@@ -1,0 +1,17 @@
+## Game to guess the number
+import random
+original=random.randint(0,100)
+tries=0
+while True:
+  
+  number=int(input("enter your guess(between 0 to 100)-->"))
+  if number==original:
+    print("Congrats!!you guessed it correctly in",tries,"tries")
+    break
+  elif number>original:
+    print("Oops..you entered a greater number..guess a lower number")
+  elif number<original:
+    print("Hmm..it seems you guessed a lower number...guess a higher number")
+  tries+=1
+
+input("press enter to quit")

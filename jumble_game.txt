@@ -1,0 +1,16 @@
+tup=("hell","lucifer","rebellion","seraphim","pandemonium","garden of eden","adam",'eve')
+import random
+correct=word=random.choice(tup)
+jumble=""
+while word:
+    position=random.randrange(len(word))
+    jumble+=word[position]
+    word=word[:position]+word[(position+1):]
+print("jumbled word is",jumble,sep=":")
+guess=input("Enter your guess:")
+while guess!=correct or guess==" ":
+    print("Try again")
+    guess=input("Enter your guess:")
+    if guess==correct:
+        print("Your guess is correct")
+input("press enter to exit the game")

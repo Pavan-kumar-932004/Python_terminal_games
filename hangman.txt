@@ -1,0 +1,112 @@
+import random as rd
+
+hangman = [
+    '''
+    +---+
+    |   |
+        |
+        |
+        |
+        |
+    ========''',
+
+    '''
+    +---+
+    |   |
+    O   |
+        |
+        |
+        |
+    ========''',
+
+    '''
+    +---+
+    |   |
+    O   |
+    |   |
+        |
+        |
+    ========''',
+
+    '''
+    +---+
+    |   |
+    O   |
+   /|   |
+        |
+        |
+    ========''',
+
+    '''
+    +---+
+    |   |
+    O   |
+   /|\  |
+        |
+        |
+    ========''',
+
+    '''
+    +---+
+    |   |
+    O   |
+   /|\  |
+   /    |
+        |
+    ========''',
+
+    '''
+    +---+
+    |   |
+    O   |
+   /|\  |
+   / \  |
+        |
+    ========'''
+]
+
+words = ('ant baboon badger bat bear beaver camel cat clam cobra cougar '
+         'coyote crow deer dog donkey duck eagle ferret fox frog goat '
+         'goose hawk lion lizard llama mole monkey moose mouse mule newt '
+         'otter owl panda parrot pigeon python rabbit ram rat raven '
+         'rhino salmon seal shark sheep skunk sloth snake spider '
+         'stork swan tiger toad trout turkey turtle weasel whale wolf '
+         'wombat zebra ').split()
+
+word = rd.choice(words).upper()
+so_far = "*" * len(word)
+wrong = 0
+used = []
+
+while wrong < len(hangman) - 1 and so_far != word:
+    print(hangman[wrong])
+    print("\nYou've used the following letters:\n", used)
+    print("\nSo far the word is", so_far)
+
+    guess = input("Enter your guess: ").upper()
+
+    while guess in used:
+        print("You've already used the letter", guess)
+        guess = input("Enter your guess: ").upper()
+
+    used.append(guess)
+
+    if guess in word:
+        print("Yes,", guess, "is in the word!")
+        new = ""
+        for i in range(len(word)):
+            if guess == word[i]:
+                new += guess
+            else:
+                new += so_far[i]
+        so_far = new
+    else:
+        print("Sorry,", guess, "isn't in the word")
+        wrong += 1
+
+if wrong == len(hangman) - 1:
+    print(hangman[wrong])
+    print("\nYou are hanged")
+else:
+    print("\nYou guessed it!")
+print("The word was", word)
